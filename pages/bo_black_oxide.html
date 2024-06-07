@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Black Oxide - Black Oxide</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- c3 CSS -->
+	<link href="../components/c3js/c3.min.css" rel="stylesheet">
+	
+	<!-- DateTimePicker CSS-->
+	<link href="../components/daterangepicker/daterangepicker.css" rel="stylesheet">
+		
+    <!-- Font Awesome CSS file -->
+	<link rel="stylesheet" href="../components/fontawesome/css/font-awesome.min.css">
+	<style>
+		.navbar-default {
+			background-color: #4cccf2;
+    
+		}
+		
+		.imgbor {
+			border: 1px;
+			background-color: #5a2a5a;
+			color:#fff;
+			padding:6px;
+			border-radius: 4px;
+		}
+		.main_page {
+			padding-top:30px;
+			padding-left:15px;
+			padding-right:15px;
+		}
+		.c3-region.regionY {
+			fill: Red ;
+		}
+		.c3-ygrid-line.gridLimit line {
+			stroke: green;
+		}
+		.c3-ygrid-line.gridLimit1 line {
+			stroke: #DC143C;
+		}
+		.c3-ygrid-line.gridLimit line {
+			stroke: #9400D3;
+		}
+		.c3-ygrid-line.gridLimit line {
+			stroke: #9400D3;
+		}
+	</style>
+	
+    
+</head>
+
+<body style="background-color:#dcedc8">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+      
+    
+				<span class="navbar-brand" style="color:#000">&nbsp;Black Oxide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</span>
+            </div>
+			<div class="navbar-collapse collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					
+					<li><a href = "bo_basic_cleaner.html">Basic Cleaner</a></li>
+					<li><a href = "bo_micro_etch.html">Micro Etch</a></li>
+					<li><a href = "bo_predip.html">Predip</a></li>
+					<li  class="active"><a href = "bo_black_oxide.html">Black Oxide</a></li>
+					<li><a href = "bo_reducer_predip.html">Reducer Predip</a></li>
+					<li><a href = "bo_reducer_sr.html">Reducer SR</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href = "../php/home.php"><i class="fa fa-home"></i>&nbsp;&nbsp;Main Page&nbsp;&nbsp;</a></li>
+				</ul>
+			</div>
+            
+           
+        </div> 
+</nav>
+<div class="main_page">
+			
+			<div class="row">
+                <div class="col-md-12">
+                    <h3 class="page-header imgbor" align="center">Black Oxide</h3>
+                </div>
+			</div>
+			
+			
+			<div class="row">
+				<div class="col-md-2 selectContainer">
+					<label class="control-label">Year <sup>*<sup></label>
+					<select class="form-control" id="year_select" name="year_select" onchange=""> <!-- OnYearChange(this.year_select) -->
+						<option value="">Choose a Year...</option> 
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+					</select>
+				</div>
+			
+				<div class=" col-md-2 selectContainer">
+					<label class="control-label">Month <sup>*<sup></label>
+					<select class="form-control" id="monthSelect" name="month" onchange="OnMonthChange(this.monthSelect)">
+						<option selected="selected" value="">Select a Month...</option> 
+						<option value="1">January</option>
+						<option value="2">February</option>
+						<option value="3">March</option>
+						<option value="4">April</option>
+						<option value="5">May</option>
+						<option value="6">June</option>
+						<option value="7">July</option>
+						<option value="8">August</option>
+						<option value="9">September</option>
+						<option value="10">October</option>
+						<option value="11">November</option>
+						<option value="12">December</option>
+					</select>
+				</div>
+			</div>
+			
+            
+			<hr />
+		<div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;Daily Area Processed ( m<sup>2</sup> ) And Cumulative Area Processed ( m<sup>2</sup> )
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="chart_1"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+				</div>
+				<!-- /.col-md-12 -->
+			
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;Part-A Analysis-1 ( ml/L ) &nbsp;|&nbsp; Addition ( L ) &nbsp;|&nbsp; Analysis-2 ( ml/L )
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="chart_2"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			
+			<div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;Part-B Analysis-1 ( ml/L ) &nbsp;|&nbsp; Addition ( L ) &nbsp;|&nbsp; Analysis-2 ( ml/L )
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="chart_3"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+				</div>
+				<!-- /.col-md-12 -->
+			
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;Weight Gain 1 And Weight Gain 2 ( mg/cm<sup>2</sup> )
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="chart_4"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			
+			<div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;Temperature ( <sup>o</sup> C )
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="chart_5"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+				</div>
+				<!-- /.col-md-12 -->
+			
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-calendar fa-fw"></i>&nbsp;&nbsp;Dates : New Bath
+                        </div>
+                        <!-- /.panel-heading -->
+					
+                        <div class="panel-body">
+                            <div class="col-md-12">
+								<div id="list"></div>
+							</div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel-->
+				</div>
+				<!-- /.col-md-12-->
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+</div>
+
+<!-- jQuery -->
+    <script src="../components/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../components/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../components/metisMenu/dist/metisMenu.min.js"></script>
+	
+	<!-- Mustache -->
+	<script src="../components/mustache/mustache.min.js"></script>
+	
+	<!-- c3 and d3 js -->
+	<script src="../components/c3js/c3.min.js"></script>
+	<script src="../components/c3js/d3.min.js"></script>
+	
+	<!-- Date Time Picker -->
+	<script src="../components/daterangepicker/moment.min.js"></script>
+	<script src="../components/daterangepicker/daterangepicker.js"></script>
+	
+	<!-- JSON 2 HTML Data -->
+	<script src="../components/json2html/json2html.js"></script>
+	
+	<script src="../js/bo_black_oxide.js"></script>
+	
+<script type="text/javascript">
+    
+	$(document).ready(function () {
+		var month = "", year= "";
+		getGraph_1(month,year);
+		getGraph_2(month,year);
+		getGraph_3(month,year);
+		getGraph_4(month,year);
+		getGraph_5(month,year);
+		
+		$.ajax({
+			url: '../php/black_oxide7.php?Month='+month+'&Year='+year,
+			//data: {
+			//  format: 'json'
+			//},
+			cache: false,
+			error: function() {
+				$('#list').html('<p>An error has occurred.</p>');
+			},
+			dataType: 'json',
+			success: function(data) {
+				//var $title = $('<h1>').text(data.talks[0].talk_title);
+				//var $description = $('<p>').text(data.talks[0].talk_description);
+				//$('#info')
+				//  .append($title)
+				//   .append($description);
+	  
+				if(data != ""){
+				
+					var transform = {'tag':'li','html':'Date : ${date} ; Info : ${info}'};
+	  
+					document.getElementById('list').innerHTML = json2html.transform(data,transform);
+		
+				}else{
+					
+					document.getElementById('list').innerHTML = "New bath not done.";
+				}
+			},
+			type: 'GET'
+		});
+		
+	});
+	
+	
+	/*
+	$(function() {
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			getGraph_1(start.format("YYYY-MM-DD"), end.format("YYYY-MM-DD"));
+        }
+		//cb(moment().subtract(29, 'days'), moment());
+        cb(moment().startOf('month'), moment().endOf('month'));
+		$('#reportrange').daterangepicker({
+            ranges: {
+                // 'Today': [moment(), moment()],
+                //'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+	});
+	*/
+	
+	$('#year_select').change(function(){
+		$('#monthSelect').prop('selectedIndex','');
+		//$('#jj_register_tag').prop('selectedIndex',0);
+	});
+	
+function OnMonthChange(dropdown){
+
+	var month = $( "#monthSelect option:selected" ).val();
+	var year = $( "#year_select option:selected" ).val();
+	//month = parseInt(month);
+	
+	getGraph_1(month,year);
+	getGraph_2(month,year);
+	getGraph_3(month,year);
+	getGraph_4(month,year);
+	getGraph_5(month,year);
+	
+	$.ajax({
+		url: '../php/black_oxide7.php?Month='+month+'&Year='+year,
+		//data: {
+		//  format: 'json'
+		//},
+		cache: false,
+		error: function() {
+			$('#list').html('<p>An error has occurred.</p>');
+		},
+		dataType: 'json',
+		success: function(data) {
+			//var $title = $('<h1>').text(data.talks[0].talk_title);
+			//var $description = $('<p>').text(data.talks[0].talk_description);
+			//$('#info')
+			//  .append($title)
+			//   .append($description);
+	 
+			if(data != ""){
+			
+				var transform = {'tag':'li','html':'Date : ${date} ; Info : ${info}'};
+	 
+				document.getElementById('list').innerHTML = json2html.transform(data,transform);
+		
+			}else{
+				
+				document.getElementById('list').innerHTML = "New bath not done.";
+			}
+		},
+		type: 'GET'
+	});
+	
+}
+	
+</script>
+</body>
+</html>
